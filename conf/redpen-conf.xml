@@ -5,8 +5,10 @@
         <validator name="SentenceLength">
             <property name="max_len" value="100" />
         </validator>
-        <!-- 不正な表現（単語や句）は無い？ -->
-        <validator name="InvalidExpression"/>
+        <!-- 不正な単語は無い？ -->
+        <validator name="InvalidWord">
+            <property name="dict" value="redpen_invalid-words.txt" />
+        </validator>
         <!-- カンマの数 <= 3つ？ -->
         <validator name="CommaNumber" />
         <!-- 不正な記号が使われていない？（記号定義はsymbolsブロック） -->
@@ -38,8 +40,12 @@
             <!-- カッコ内の文の長さ <= 20？ -->
             <property name="max_length" value="20" />
         </validator>
-        <!-- 長すぎる熟語を使っていない？ -->
-        <validator name="LongKanjiChain" />
+        <!-- 半角カタカナを使っていない？ -->
+        <validator name="HankakuKana" />
+        <!-- 長すぎる熟語を使っていない？: 連続する漢字の文字数 <= 8？ -->
+        <validator name="LongKanjiChain">
+            <property name="max_len" value="8" />
+        </validator>
         <!-- section level <= 3？ -->
         <validator name="SectionLevel">
             <property name="max_num" value="3" />
@@ -55,8 +61,4 @@
             <!-- 「が」を2回使っていない？ -->
             <validator name="DoubledConjunctiveParticleGa" />
     </validators>
-
-    <symbols>
-        <symbol name="EXCLAMATION_MARK" value="!" invalid-chars="！" after-space="true" />
-    </symbols>
 </redpen-conf>
