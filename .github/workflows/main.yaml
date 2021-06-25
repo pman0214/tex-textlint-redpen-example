@@ -1,4 +1,4 @@
-name: textlint
+name: redpen+reviewdog
 
 on:
   pull_request:
@@ -19,7 +19,7 @@ jobs:
         level: info
         github_token: ${{ secrets.github_token }}
         reporter: github-pr-review
-        filter_mode: "file"
+        filter_mode: "added"
         fail_on_error: true
         targets: "*.tex"
         config: "conf/redpen-conf.xml"
