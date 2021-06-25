@@ -1,0 +1,25 @@
+name: redpen+reviewdog
+
+on:
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  build:
+   runs-on: ubuntu-latest
+   steps:
+    - name: checkout
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+    - name: redpen-reviewdog
+      uses: tsuyoshicho/action-redpen@v1.5.1
+      with:
+        level: info
+        github_token: ${{ secrets.github_token }}
+        reporter: github-pr-review
+        filter_mode: "added"
+        fail_on_error: true
+        targets: "*.tex"
+        config: "conf/redpen-conf.xml"
