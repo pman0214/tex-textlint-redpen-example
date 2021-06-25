@@ -7,35 +7,43 @@ latex文書に対するtextlint+redpenをgithub actionsで走らせるサンプ�
 ## 導入方法
 
 Overleafと連携している前提で構築しています。
-Overleafではcommit先branchを指定できないことから（おそらくデフォルトになります）、以下の手順で導入してください。
+Overleafではcommit先branchを指定できないことから（おそらくデフォルトになります）、以下の手順で導入します。
 
 1. 元々のデフォルトブランチが`master`であると仮定します（最近は`main`になるみたいです）。
-1. 自分の文章が入っているtexレポジトリで新たにbranchを作成します。ここでは`devel`を作成したとします。
-1. デフォルトbranchを`devel`に切り替えます。
-    * デフォルトブランチの切り替えは、レポジトリのSettings > Branchesで行えます。
 1. 自分の文章が入っているtexレポジトリに、このレポジトリの`.github/workflows/`をディクトリごとコピーします。
-1. 元々のデフォルトブランチが`master`ではない場合は、`.github/workflows/main.yml`を6行目のブランチ名を書き換えます。
 1. `.github/workflows/`を`master`にcommit & pushします。
-1. 必要があれば`conf/`内の設定ファイルを変更してcommit & pushしてください。
+1. 自分の文章が入っているtexレポジトリに、このレポジトリの`conf/`をディクトリごとコピーします。
+1. `conf/`を`master`にcommit & pushします。
+    * 必要があれば`conf/`内の設定ファイルを変更してからcommit & pushしてください。
+1. 自分の文章が入っているtexレポジトリで、`review`ブランチを作成します。
 
 設定ファイル名|内容
 ---|---
-redpen-conf.xml|redpenの設定ファイル
-redpen_invalid-words.txt|redpen-conf.xmlで設定している、不正な単語リストファイル
+conf/redpen-conf.xml|redpenの設定ファイル
+conf/redpen_invalid-words.txt|redpen-conf.xmlで設定している、不正な単語リストファイル
 
 ## 使い方
 
-`master`ブランチにPull Requestを出すことで、redpenが実行され、reviewdogでPull Requestにコメントとして表示されます。
+`review`ブランチにPull Requestを出すことで、redpenが実行されてreviewdogでPull Requestにコメントとして表示されます。
+単純に、[redpen+reviewdogのgithub action](https://github.com/tsuyoshicho/action-redpen)を呼び出しているだけです。
 
-1. tex文章の作成を`devel`ブランチで行います。
-    * もちろん、`devel`からさらにブランチを切って作業し、`devel`にマージしていまっても問題ありません。
-1. チェックしたいタイミングが来たら、`devel`→`master`のPull Requestを作成します。
-1. あとは待っていれば作成したPull Requestにチェック結果が反映されて表示されます。
+1. tex文章の作成を`master`ブランチで行います。
+    * もちろん、`master`からさらにブランチを切って作業し、`master`にマージしていく形でも構いません。
+1. チェックしたいタイミングが来たら、`master`→`review`のPull Requestを作成します。
+1. チェックが完了するのを待ちます。
+1. 作成したPull Requestにチェック結果が表示されます。
+1. 指摘に対する修正などを行って`review`にcommitします。
+    * Pull Request画面でsuggestionを作成してcommitしてもOKです。
+1. `review`にcommitすると再びredpen+reviewdogが実行されますので、問題なくなる（あるいは無視してOKになるまで）修正を繰り返します。
+1. Pull Requestをマージしてcloseします。
+1. `master`に`review`をマージします。
+    * `review`→`master`のPull Requestを作成するなどしてマージします。
+    * これをやらないと、チェックして修正した結果が反映されません。
 
 ## Relies on
 
-- [tsuyoshicho - GitHub Action: Run redpen with reviewdog](https://github.com/tsuyoshicho/action-redpen)
-- [reviewdog](https://github.com/reviewdog/reviewdog)
+* [tsuyoshicho - GitHub Action: Run redpen with reviewdog](https://github.com/tsuyoshicho/action-redpen)
+* [reviewdog](https://github.com/reviewdog/reviewdog)
 
 ## License
 

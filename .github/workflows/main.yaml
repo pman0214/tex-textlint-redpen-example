@@ -3,7 +3,7 @@ name: redpen+reviewdog
 on:
   pull_request:
     branches:
-    - master
+    - review
 
 jobs:
   build:
