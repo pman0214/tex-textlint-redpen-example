@@ -22,4 +22,4 @@ jobs:
         filter_mode: "added"
         fail_on_error: true
         targets: "*.tex"
-        config: "conf/redpen/redpen-conf.xml"
+        config: "redpen-conf.xml"

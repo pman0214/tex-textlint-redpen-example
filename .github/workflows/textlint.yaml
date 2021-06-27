@@ -3,7 +3,7 @@ name: textlint+reviewdog
 on:
   pull_request:
     branches:
-    - linter
+    - lint
 
 jobs:
   textlint:
