@@ -6,7 +6,7 @@ on:
     - review
 
 jobs:
-  build:
+  redpen:
    runs-on: ubuntu-latest
    steps:
     - name: checkout
@@ -14,7 +14,7 @@ jobs:
       with:
         submodules: true
     - name: redpen-reviewdog
-      uses: tsuyoshicho/action-redpen@v1.5.1
+      uses: tsuyoshicho/action-redpen@v1
       with:
         level: info
         github_token: ${{ secrets.github_token }}
@@ -22,4 +22,4 @@ jobs:
         filter_mode: "added"
         fail_on_error: true
         targets: "*.tex"
-        config: "conf/redpen-conf.xml"
+        config: "conf/redpen/redpen-conf.xml"
