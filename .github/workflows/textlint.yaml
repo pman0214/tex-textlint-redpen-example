@@ -1,0 +1,28 @@
+name: textlint+reviewdog
+
+on:
+  pull_request:
+    branches:
+    - linter
+
+jobs:
+  textlint:
+   runs-on: ubuntu-latest
+   steps:
+    - name: checkout
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+    - name: install-node
+      uses: actions/setup-node@v1
+      with:
+        node-version: '16'
+    - name: textlint-reviewdog
+      uses: tsuyoshicho/action-textlint@v3
+      with:
+        level: info
+        github_token: ${{ secrets.github_token }}
+        reporter: github-pr-review
+        filter_mode: "added"
+        fail_on_error: true
+        textlint_flags: "*.tex"

@@ -7,7 +7,7 @@
         </validator>
         <!-- 不正な単語は無い？ -->
         <validator name="InvalidWord">
-            <property name="dict" value="redpen_invalid-words.txt" />
+            <property name="dict" value="redpen-invalid-words.txt" />
         </validator>
         <!-- カンマの数 <= 3つ？ -->
         <validator name="CommaNumber" />
