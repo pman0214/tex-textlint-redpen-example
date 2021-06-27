@@ -1,0 +1,15 @@
+{
+  "name": "textlint-tech-paper",
+  "scripts": {
+    "lint": "textlint '*.tex'",
+    "lint-fix": "textlint --fix '*.tex'"
+  },
+  "dependencies": {
+    "textlint": "^12.0.0",
+    "textlint-plugin-latex2e": "^1.1.4",
+    "textlint-rule-preset-ja-engineering-paper": "^1.0.3",
+    "textlint-rule-preset-ja-spacing": "^2.1.3",
+    "textlint-rule-preset-ja-technical-writing": "^6.0.0",
+    "textlint-rule-preset-japanese": "^6.0.1"
+  }
+}

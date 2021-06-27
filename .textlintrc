@@ -1,0 +1,24 @@
+{
+  "filters": {},
+  "plugins": [
+    "latex2e"
+  ],
+  "rules": {
+    "preset-ja-engineering-paper": true,
+    "preset-ja-spacing": true,
+    "preset-ja-technical-writing": {
+      "ja-no-mixed-period": {
+        "periodMark": "．"
+      },
+      "max-kanji-continuous-len": {
+        "max": 8
+      }
+    },
+    "preset-japanese": true,
+    "prh": {
+      "rulePaths" :[
+        "node_modules/prh/prh-rules/media/WEB+DB_PRESS.yml"
+      ]
+    }
+  }
+}
