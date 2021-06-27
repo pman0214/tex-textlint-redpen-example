@@ -1,8 +1,7 @@
 {
   "name": "textlint-tech-paper",
   "scripts": {
-    "lint": "textlint '*.tex'",
-    "lint-fix": "textlint --fix '*.tex'"
+    "lint": "textlint '*.tex'"
   },
   "dependencies": {
     "textlint": "^12.0.0",
